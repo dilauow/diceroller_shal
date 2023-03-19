@@ -27,7 +27,8 @@ class playGameFragment : Fragment() {
     private var playershuffleScore: Int = 0
     private var computershuffleScore: Int = 0
 
-
+    //default target score/win score
+    var winScore =101
 
     //    shuffle counter
     var throwCounter = 0
@@ -58,7 +59,7 @@ class playGameFragment : Fragment() {
         //    update the all wins text
         binding.allWins.setText("H:" + additionalClasses.playerWins.toString() + "/ C:" + additionalClasses.computerWins.toString())
 
-//        TODO added the initial counter
+//         added the initial counter
         computerShuffleCounter = (Random.nextInt(3) + 1)
         // player dices list
         playerdicesList =
@@ -69,7 +70,7 @@ class playGameFragment : Fragment() {
         //when throw button pressed
         binding.shuffle.setOnClickListener {
             throwCounter++
-            // TODO: this code change to throw the computer dices too
+            // this code change to throw the computer dices too
             if (throwCounter == 1) {
                 computerEachThrowScore = throwDices(computerdicesList, false)
 
@@ -79,8 +80,9 @@ class playGameFragment : Fragment() {
             if (throwCounter < 3) {
                 playerEachThrowScore = throwDices(playerdicesList, true)
 
-
                 Log.d("check throw count", throwCounter.toString())
+
+
                 //in the 3rd throw ,3rd throw score should be added
             } else if (throwCounter == 3) {
                 playerEachThrowScore = throwDices(playerdicesList, player = true)
@@ -114,6 +116,14 @@ class playGameFragment : Fragment() {
             }
         }
 
+// Enter target score in the edit text
+        binding.okBtn.setOnClickListener {
+            winScore=binding.defaultValue.text.toString().toInt()
+            binding.defaultValue.visibility=View.GONE
+            binding.okBtn.visibility=View.GONE
+            binding.targetScoreTxt.visibility=View.GONE
+
+        }
 
 
         return binding.root
@@ -183,17 +193,22 @@ class playGameFragment : Fragment() {
 
     //checking winner
     private fun checkingWinner(view: View) {
-        if (playershuffleScore >= 101 || computershuffleScore >= 101) {
+        if (playershuffleScore >= winScore || computershuffleScore >= winScore) {
             if (playershuffleScore < computershuffleScore) {
                 additionalClasses.computerWins += 1
                 // player lost
                 val popUp = WonLostDialog.newInstance("You Lost",false)
                 popUp.show(childFragmentManager,"dialog")
+                binding.shuffle.visibility=View.GONE
+                binding.Score.visibility=View.GONE
+
             } else if (computershuffleScore < playershuffleScore) {
                 // player wins
                 additionalClasses.playerWins += 1
                 val popUp = WonLostDialog.newInstance("You Win",true)
                 popUp.show(childFragmentManager,"dialog")
+                binding.shuffle.visibility=View.GONE
+                binding.Score.visibility=View.GONE
 
 
             }
