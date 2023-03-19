@@ -80,7 +80,7 @@ class playGameFragment : Fragment() {
             if (throwCounter < 3) {
                 playerEachThrowScore = throwDices(playerdicesList, true)
 
-                Log.d("check throw count", throwCounter.toString())
+
 
 
                 //in the 3rd throw ,3rd throw score should be added
