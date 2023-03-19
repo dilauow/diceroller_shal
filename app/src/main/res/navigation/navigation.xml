@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/titlefragment">
+    <fragment
+        android:id="@+id/titlefragment"
+        android:name="com.example.diceroller.titlefragment"
+        android:label="titlefragment" >
+        <action
+            android:id="@+id/action_titlefragment_to_playGameFragment"
+            app:destination="@id/playGameFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/playGameFragment"
+        android:name="com.example.diceroller.playGameFragment"
+        android:label="playGameFragment" />
+</navigation>
