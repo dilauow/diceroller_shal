@@ -19,6 +19,8 @@
     <string name="play_again_lost">Play Again</string>
     <string name="computer_dices">Computer Dices</string>
     <string name="h_0_c_0">H:0 / C:0</string>
-    <string name="Ok">ok</string>
+    <string name="default101">101</string>
+    <string name="target_score">Target Score</string>
+    <string name="Ok">OK</string>
 
 </resources>

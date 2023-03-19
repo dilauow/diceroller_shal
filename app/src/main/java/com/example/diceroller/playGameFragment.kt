@@ -110,9 +110,11 @@ class playGameFragment : Fragment() {
                 throwCounter = 0
 
             } else {
-                Toast.makeText(activity, "Press Throw Button First!!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, "Press The Throw Button First!!", Toast.LENGTH_SHORT).show();
             }
         }
+
+
 
         return binding.root
     }
