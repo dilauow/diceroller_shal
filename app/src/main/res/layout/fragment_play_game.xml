@@ -4,10 +4,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.diceRoller.gamePlayFragement">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android.orientation="vertical">
+        android:layout_height="wrap_content"
+        >
 
         <TextView
             android:id="@+id/yourScoreText"
@@ -309,4 +315,5 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>

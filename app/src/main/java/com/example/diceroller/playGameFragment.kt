@@ -30,6 +30,9 @@ class playGameFragment : Fragment() {
     //default target score/win score
     var winScore =101
 
+    //player dices list
+    lateinit var playerDicesIds : MutableList<Int>
+
     //    shuffle counter
     var throwCounter = 0
 
@@ -64,6 +67,15 @@ class playGameFragment : Fragment() {
 
         // player dices list
         playerdicesList = mutableListOf(binding.pd1, binding.pd2, binding.pd3, binding.pd4, binding.pd5)
+//player dices id list
+        playerDicesIds = mutableListOf(binding.pd1.id, binding.pd2.id, binding.pd3.id, binding.pd4.id, binding.pd5.id)
+
+        // get the player and computer scores from global context in case in rotation
+        playershuffleScore = additionalClasses.playersCurrentScore
+        computershuffleScore = additionalClasses.computerCurrentScore
+        updateScores(playershuffleScore,computershuffleScore)
+
+
 
 //        call eventListeners
         addEventListnersToDices()
@@ -125,6 +137,14 @@ class playGameFragment : Fragment() {
 
         }
         return binding.root
+    }
+
+    //saved current score in a global level
+    override fun onDestroyView() {
+        super.onDestroyView()
+        additionalClasses.playersCurrentScore = playershuffleScore
+        additionalClasses.computerCurrentScore = computershuffleScore
+
     }
 
 
@@ -199,6 +219,8 @@ class playGameFragment : Fragment() {
                 popUp.show(childFragmentManager,"dialog")
                 binding.shuffle.visibility=View.GONE
                 binding.Score.visibility=View.GONE
+                playershuffleScore=0
+                computershuffleScore=0
 
             } else if (computershuffleScore < playershuffleScore) {
                 // player wins
@@ -207,6 +229,8 @@ class playGameFragment : Fragment() {
                 popUp.show(childFragmentManager,"dialog")
                 binding.shuffle.visibility=View.GONE
                 binding.Score.visibility=View.GONE
+                playershuffleScore=0
+                computershuffleScore=0
 
 
             }
@@ -227,10 +251,10 @@ class playGameFragment : Fragment() {
                     Log.d("Clicked", it.id.toString())
                     val clickedId = it.id  //from this id we are generating id(index) for each dice
                     val arrayIndex = when (clickedId) {
-                        2131231063 -> 0
-                        2131231064 -> 1
-                        2131231065 -> 2
-                        2131231066 -> 3
+                        playerDicesIds[0] -> 0
+                        playerDicesIds[1] -> 1
+                        playerDicesIds[2] -> 2
+                        playerDicesIds[3] -> 3
                         else -> 4
                     }
                     changeAlpha(playerdicesList[arrayIndex]) //alpha used to show the dice is  in object dice array
