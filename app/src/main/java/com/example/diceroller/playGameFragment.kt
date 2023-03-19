@@ -61,9 +61,9 @@ class playGameFragment : Fragment() {
 
 //         added the initial counter
         computerShuffleCounter = (Random.nextInt(3) + 1)
+
         // player dices list
-        playerdicesList =
-            mutableListOf(binding.pd1, binding.pd2, binding.pd3, binding.pd4, binding.pd5)
+        playerdicesList = mutableListOf(binding.pd1, binding.pd2, binding.pd3, binding.pd4, binding.pd5)
 
 //        call eventListeners
         addEventListnersToDices()
@@ -124,8 +124,6 @@ class playGameFragment : Fragment() {
             binding.targetScoreTxt.visibility=View.GONE
 
         }
-
-
         return binding.root
     }
 
@@ -247,7 +245,7 @@ class playGameFragment : Fragment() {
 
     }
 
-    //    TODO random stratergies
+    //     random strategies
     private fun computerRoleAndUpdateScores(firstAttemptScore: Int): Int {
 
         Log.d("Role NUmber", computerShuffleCounter.toString())
